@@ -5,12 +5,17 @@ on:
     paths: "*.py"
 
 jobs:
-  code:
+  code-linting:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout/Clone the code
         uses: actions/checkout@v7
-        
+
+      # this step will intall the linter
       - name: Install Linter
         run: pip install ruff
+
+      # this step will be run linter
+      - name: check the files for linting
+        run: ruff check .
